@@ -1,4 +1,4 @@
-# Engkanto_Encounter
+# Engkanto Encounter 👻
 A development of a console application Strategy/Simulation game inspired by Filipino Mythical Creatures using Java.
 
 Dive into the cursed world engulfed by powerful mythical creatures standing between you and their master - The Engkanto. 
