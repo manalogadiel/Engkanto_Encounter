@@ -8,7 +8,7 @@ Strategically uncover all levels of the mysteries behind this lore (Story mode) 
 # GAME: ENGKANTO ENCOUNTER
 GAME THEME/GENRE : Myth/Strategy/Simulation
 
-SAMPLE ONSCREEN LAYOUT(Prototype):
+SAMPLE ONSCREEN LAYOUT (Prototype):
 ```
 A flying Manananggal has been identified on the roof.
 	Aura Pulse: Chaotic		Consciousness: Awakened
@@ -25,7 +25,7 @@ You’ve used light candles, the spirit is Crystal Clear.
 [Third Eye]	[Burn Herbs]	[Ember Rite]	[Invoke Fire]	[Holy Water]
 [Light Candle]	[Spirit Bell]	[Sprinkle Salt]	[Garlic Blast]	[FORFEIT]
 ```
-**Item/Ability** 
+# ⚔️ Ritual Abilities and Items
 💧 **Holy Water**
 > Purifies the Ritual Ground to vanish signs or clues of the encountered Engkanto. Used to **finish off the exorcism**.
 
@@ -71,7 +71,7 @@ You’ve used light candles, the spirit is Crystal Clear.
 🚪 **Forfeit**
 > Immediately ends the encounter.
 
-STRUCTURE (Prototype):
+# STRUCTURE (Prototype):
 ```
 #Starting text of hidden and visible Creature
 	#Vitals of the Creature
