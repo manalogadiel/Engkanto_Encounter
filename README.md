@@ -71,6 +71,8 @@ You’ve used light candles, the spirit is Crystal Clear.
 🚪 **Forfeit**
 > Immediately ends the encounter.
 
+📿 **Rosary**
+> Used when divine faith is wavering or falters.
 # STRUCTURE (Prototype):
 ```
 #Starting text of hidden and visible Creature
