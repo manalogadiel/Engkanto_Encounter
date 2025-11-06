@@ -68,9 +68,6 @@ You’ve used light candles, the spirit is Crystal Clear.
 🌋 **Invoke Fire**
 > Reduces **Channeling** (less effective than Chant Prayer).
 
-🚪 **Forfeit**
-> Immediately ends the encounter.
-
 📿 **Rosary**
 > Used when divine faith is wavering or falters.
 # STRUCTURE (Prototype):
