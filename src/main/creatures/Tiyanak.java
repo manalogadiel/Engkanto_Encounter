@@ -1,23 +1,22 @@
 package creatures;
 
-import core.Vitals;
-
-public class Tiyanak extends Creature {
+public final class Tiyanak extends Creature {
 
     public Tiyanak() {
         super("Tiyanak");
+        setStartingVitals();
     }
 
     @Override
     protected void setStartingVitals() {
-        vitals.setAuraPulse(Vitals.AuraPulse.CORRUPTED);
-        vitals.setSoulFlux(90.0);
-        vitals.setPyricMarks(3);
-        vitals.setConsciousness(Vitals.Consciousness.STIRRED);
-        vitals.setRitualGround(Vitals.RitualGround.UNMARKED);
-        vitals.setSpiritualVision(Vitals.SpiritualVision.FLICKERING);
+        vitals.setAuraPulse(0);
+        vitals.setSoulFlux(80.0);
+        vitals.setPyricMarks(0);
+        vitals.setConsciousness(7);
+        vitals.setRitualGround(0);
+        vitals.setSpiritualVision(0);
         vitals.setUncorrupted(1);
-        vitals.setPossessed(2);
-        vitals.setChanneling(true);
+        vitals.setPossessed(1);
+        vitals.setChanneling(10);
     }
 }

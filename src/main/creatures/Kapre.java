@@ -1,7 +1,5 @@
 package creatures;
 
-import core.Vitals;
-
 public final class Kapre extends Creature {
 
     public Kapre() {
@@ -11,14 +9,14 @@ public final class Kapre extends Creature {
 
     @Override
     protected void setStartingVitals() {
-        vitals.setAuraPulse(Vitals.AuraPulse.CHAOTIC);
+        vitals.setAuraPulse(2);
         vitals.setSoulFlux(70.0);
-        vitals.setPyricMarks(1);
-        vitals.setConsciousness(Vitals.Consciousness.DORMANT);
-        vitals.setRitualGround(Vitals.RitualGround.UNMARKED);
-        vitals.setSpiritualVision(Vitals.SpiritualVision.VEILED);
+        vitals.setPyricMarks(0);
+        vitals.setConsciousness(0);
+        vitals.setRitualGround(0);
+        vitals.setSpiritualVision(0);
         vitals.setUncorrupted(1);
         vitals.setPossessed(0);
-        vitals.setChanneling(false);
+        vitals.setChanneling(10);
     }
 }

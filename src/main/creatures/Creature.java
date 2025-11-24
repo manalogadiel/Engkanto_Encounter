@@ -31,7 +31,7 @@ public abstract class Creature {
         );
         System.out.printf(
             "%-25s %-25s%n",
-            "Soul Flux: " + vitals.getSoulFlux() + "°",
+            String.format("Soul Flux: %.2f°", vitals.getSoulFlux()),
             "Ritual Ground: " + vitals.getRitualGround()
         );
         System.out.printf(
@@ -44,8 +44,10 @@ public abstract class Creature {
                 System.out.println("Essence: " + vitals.getUncorrupted() + " Uncorrupted, " + vitals.getPossessed() + " Possessed");
             }
 
-            if (vitals.getChanneling()) {
+            if (vitals.getChanneling() <= 5) {
                 System.out.println("\nThe creature is channeling its energy!");
+            } else if (vitals.getChanneling() <= 3) {
+                System.out.println("\nThe creature is channeling a catastrophic amount of energy.");
             }
     }
 

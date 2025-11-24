@@ -1,7 +1,5 @@
 package creatures;
 
-import core.Vitals;
-
 public final class Manananggal extends Creature {
 
     public Manananggal() {
@@ -11,14 +9,14 @@ public final class Manananggal extends Creature {
 
     @Override
     protected void setStartingVitals() {
-        vitals.setAuraPulse(Vitals.AuraPulse.DEFILED);
+        vitals.setAuraPulse(0);
         vitals.setSoulFlux(85.0);
-        vitals.setPyricMarks(2);
-        vitals.setConsciousness(Vitals.Consciousness.STIRRED);
-        vitals.setRitualGround(Vitals.RitualGround.UNMARKED);
-        vitals.setSpiritualVision(Vitals.SpiritualVision.FLICKERING);
+        vitals.setPyricMarks(0);
+        vitals.setConsciousness(8);
+        vitals.setRitualGround(0);
+        vitals.setSpiritualVision(0);
         vitals.setUncorrupted(0);
         vitals.setPossessed(2);
-        vitals.setChanneling(true);
+        vitals.setChanneling(10);
     }
 }

@@ -1,7 +1,5 @@
 package creatures;
 
-import core.Vitals;
-
 public final class Duwende extends Creature {
 
     public Duwende() {
@@ -11,14 +9,14 @@ public final class Duwende extends Creature {
 
     @Override
     protected void setStartingVitals() {
-        vitals.setAuraPulse(Vitals.AuraPulse.EMPOWERING);
+        vitals.setAuraPulse(3);
         vitals.setSoulFlux(75.0);
-        vitals.setPyricMarks(1);
-        vitals.setConsciousness(Vitals.Consciousness.AWAKENED);
-        vitals.setRitualGround(Vitals.RitualGround.UNMARKED);
-        vitals.setSpiritualVision(Vitals.SpiritualVision.VISIBLE);
-        vitals.setUncorrupted(2);
+        vitals.setPyricMarks(0);
+        vitals.setConsciousness(10);
+        vitals.setRitualGround(0);
+        vitals.setSpiritualVision(1);
+        vitals.setUncorrupted(0);
         vitals.setPossessed(0);
-        vitals.setChanneling(false); 
+        vitals.setChanneling(10); 
     }
 }
