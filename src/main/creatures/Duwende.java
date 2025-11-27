@@ -1,5 +1,7 @@
 package creatures;
 
+import java.util.Random;
+
 public final class Duwende extends Creature {
 
     public Duwende() {
@@ -18,5 +20,6 @@ public final class Duwende extends Creature {
         vitals.setUncorrupted(0);
         vitals.setPossessed(0);
         vitals.setChanneling(10); 
+        vitals.setRequiredMarks(new Random().nextInt(2,4));
     }
 }

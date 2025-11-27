@@ -1,5 +1,7 @@
 package creatures;
 
+import java.util.Random;
+
 public final class Tiyanak extends Creature {
 
     public Tiyanak() {
@@ -18,5 +20,6 @@ public final class Tiyanak extends Creature {
         vitals.setUncorrupted(1);
         vitals.setPossessed(1);
         vitals.setChanneling(10);
+        vitals.setRequiredMarks(new Random().nextInt(2,4));
     }
 }

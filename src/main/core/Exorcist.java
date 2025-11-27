@@ -13,6 +13,7 @@ public class Exorcist {
     private int lightRange = 800;
     private boolean thirdEyeUsed = false;
     private boolean chamberOpened = false;
+    private boolean heartBaneUsed = false;
     Exorcist() {
         inventory.add("Draw Circle");
         inventory.add("Essence Chamber");
@@ -118,10 +119,11 @@ public class Exorcist {
             case "Burn Herbs" -> {
                 if (chamberOpened){
                     if (skillSuccess(90, skillRange)) {
-                        vitals.setRitualGround(vitals.getRitualGroundValue()+10);
+                        vitals.setSoulFlux(Math.min(130.00, vitals.getSoulFlux() + new Random().nextDouble(3.23, 12.93)));
                         setSkillText("The herbs smolder slowly; the air grows thick with acrid fumes.\n"); 
                     }
                     else {
+                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(3.23, 15.93));
                         setSkillText("The herbs fail to ignite properly; the smoke disperses harmlessly.\n");
                     }
                 }
@@ -132,7 +134,6 @@ public class Exorcist {
             case "Chant Prayer" -> {
                 if (skillSuccess(90, skillRange)) {
                     vitals.setPyricMarks(Math.max(0, vitals.getPyricMarks()-1));
-
                     setSkillText("Your prayer resonates; the flames calm and Pyric Marks decrease.\n"); 
                 }
                 else {
@@ -146,8 +147,11 @@ public class Exorcist {
                 }
                 else {
                     if (skillSuccess(90, skillRange)) {
-                        vitals.setPyricMarks(vitals.getPyricMarks()+1);
-                        setSkillText("The flames answer your call; the Ember Rite is fulfilled.\n"); 
+                        vitals.setPyricMarks(Math.min(10, vitals.getPyricMarks()+1));
+                        setSkillText("The flames answer your call; the Ember Rite is fulfilled.\n");
+                        if (vitals.getPyricMarks() >= vitals.getRequiredMarks()) {
+                            setSkillText("The creature's heart essence has been fully dissolved!\n");
+                        }
                     }
                     else {
                         setSkillText("The power rejects your command; the creature's mind resists.\n");
@@ -156,22 +160,28 @@ public class Exorcist {
             }
             case "Spirit Bell" -> {
                 if (skillSuccess(90, skillRange)) {
-                    vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - (new Random().nextInt(4, 7))));
+                    vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - 1));
+                    vitals.setConsciousness(Math.max(0, vitals.getConsciousnessValue() - new Random().nextInt(7, 10)));
                     setSkillText("The bell's chime echoes - The creature collapses into silence.\n"); 
                 }
                 else {
                     setSkillText("You rang the wrong bell, Mamang Sorbetero is looking for it.\n");
                 }
             }
-            // case "Heartbane" -> {
-            //     if (skillSuccess(90, skillRange)) {
-            //         vitals.setPyricMarks(vitals.getPyricMarks()+1);
-            //         setSkillText("Your strike pierces true; the creature's heart essence dissolves.\n"); 
-            //     }
-            //     else {
-            //         setSkillText("The core retaliates; your energy is repelled.\n");
-            //     }
-            // }
+            case "Heartbane" -> {
+                if (vitals.getPyricMarks() >= vitals.getRequiredMarks() && !heartBaneUsed) {
+                    if (skillSuccess(90, skillRange)) {
+                        heartBaneUsed = true;
+                        setSkillText("Your strike pierces true; the creature's heart essence dissolves.\n"); 
+                    }
+                    else {
+                        setSkillText("The core retaliates; your energy is repelled.\n");
+                    }
+                }
+                else{
+                    setSkillText("The creature's heart is still strong; more Pyric Marks are needed or you've used it already, think wise.\n");
+                }
+            }
             // case "Kepweng's Potion" -> {
             //     if (skillSuccess(90, skillRange)) {
             //         vitals.setRitualGround(setVitals.getRitualGroundValue()+10);
@@ -182,15 +192,20 @@ public class Exorcist {
             //     }
             // }
         
-            // case "Invoke Fire" -> {
-            //     if (skillSuccess(90, skillRange)) {
-            //         vitals.setRitualGround(setVitals.getRitualGroundValue()+10);
-            //         setSkillText("The fire surges and burns away lingering channeling.\n"); 
-            //     }
-            //     else {
-            //         setSkillText("The flames flicker out; channeling continues.\n");
-            //     }
-            // }
+            case "Invoke Fire" -> {
+                if (vitals.getPyricMarks() >= 1){
+                    if (skillSuccess(90, skillRange)) {
+                        vitals.setChanneling(vitals.getChanneling() - (new Random().nextInt(1,2)));
+                        setSkillText("The fire surges and burns away lingering channeling.\n"); 
+                    }
+                    else {
+                        setSkillText("The flames flicker out; channeling continues.\n");
+                    }
+                }
+                else {
+                    setSkillText("The creature resists; no Pyric Marks to fuel the fire.\n");
+                }
+            }
             // case "Holy Water" -> {
             //     if (skillSuccess(90, skillRange)) {
             //         vitals.setRitualGround(setVitals.getRitualGroundValue()+10);
@@ -273,4 +288,8 @@ public class Exorcist {
     public boolean lightCandleSuccess(int chancePercent, int lightRange) {
         return new Random().nextInt(lightRange) <= chancePercent;
     } 
+
+    public boolean getHeartbaneUsed() {
+        return heartBaneUsed;
+    }   
 }

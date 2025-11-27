@@ -25,6 +25,7 @@ public class Vitals {
     private int spiritualVisionValue; 
     private int faithStateValue;
 
+    private int requiredMarks;
     // Helper methods to map integer values to enum types
     public static AuraPulse getAuraPulseFromInt(int value) {
         if (value == 10) return null; // auto lose, handle in game logic
@@ -76,7 +77,8 @@ public class Vitals {
     public int getRitualGroundValue() { return ritualGroundValue; }
     public int getSpiritualVisionValue() { return spiritualVisionValue; }
     public int getFaithStateValue() { return faithStateValue; }
-
+    public int getRequiredMarks() { return requiredMarks; } 
+    
     public void setAuraPulse(int auraPulseValue) { 
         this.auraPulse = getAuraPulseFromInt(auraPulseValue); 
         this.auraPulseValue = auraPulseValue;
@@ -114,5 +116,8 @@ public class Vitals {
     }
     public void setKepwengDeadlineTurn(int kepwengDeadlineTurn) { 
         this.kepwengDeadlineTurn = kepwengDeadlineTurn; 
+    }
+    public void setRequiredMarks(int requiredMarks) {
+        this.requiredMarks = requiredMarks;
     }
 }

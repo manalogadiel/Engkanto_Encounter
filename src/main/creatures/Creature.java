@@ -50,6 +50,8 @@ public abstract class Creature {
                 System.out.println("\nThe creature is channeling a catastrophic amount of energy.");
             }
     }
+    // to apply faltering logic by base 10 integer, 0-1 means faltered 0 is lose but 1 is chance, 2-4 means starting to falter, 5 above is normal
+    // to apply channeling logic by base 10 integer, 0  means channeled 0 is lose but 1 is chance, 2-4 means starting to channel, 5 above is normal
 
     @Override
     public String toString(){

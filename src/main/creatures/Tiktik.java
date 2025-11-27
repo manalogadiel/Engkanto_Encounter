@@ -1,5 +1,7 @@
 package creatures;
 
+import java.util.Random;
+
 public final class Tiktik extends Creature {
 
     public Tiktik() {
@@ -18,5 +20,6 @@ public final class Tiktik extends Creature {
         vitals.setUncorrupted(1);
         vitals.setPossessed(1);
         vitals.setChanneling(10);
+        vitals.setRequiredMarks(new Random().nextInt(2,4));
     }
 }

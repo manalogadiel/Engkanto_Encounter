@@ -18,5 +18,6 @@ public final class Engkanto extends Creature {
         vitals.setUncorrupted(2);
         vitals.setPossessed(0);
         vitals.setChanneling(10);
+        
     }
 }
