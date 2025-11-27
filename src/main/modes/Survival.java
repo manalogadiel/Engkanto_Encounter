@@ -9,13 +9,13 @@ public class Survival {
     private final Creature[] creatures = {
         new Duwende(),
         new WhiteLady(),
-        new Engkanto(),
-        new Kapre(),
-        new Manananggal(),
         new Tiyanak(),
+        new Kapre(),
         new Tikbalang(),
+        new Tiktik(),
+        new Manananggal(),
         new Sirena(),
-        new Tiktik()
+        new Engkanto()
     };
 
     public void start() {

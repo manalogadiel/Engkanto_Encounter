@@ -18,5 +18,6 @@ public final class Sirena extends Creature {
         vitals.setUncorrupted(1);
         vitals.setPossessed(1);
         vitals.setChanneling(10);
+        vitals.setRareCreatureEncountered(true);
     }
 }

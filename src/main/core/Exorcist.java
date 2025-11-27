@@ -14,6 +14,7 @@ public class Exorcist {
     private boolean thirdEyeUsed = false;
     private boolean chamberOpened = false;
     private boolean heartBaneUsed = false;
+    private boolean holyWaterUsed = false;
     Exorcist() {
         inventory.add("Draw Circle");
         inventory.add("Essence Chamber");
@@ -105,7 +106,7 @@ public class Exorcist {
             }
             case "Essence Chamber" -> {
                 if (skillSuccess(90, skillRange)) {
-                    chamberOpened = true;
+                    setChamberOpened(true);
                     vitals.setConsciousness(Math.min(10, vitals.getConsciousnessValue()+1));
                     vitals.setSoulFlux(vitals.getSoulFlux() - (new Random().nextDouble(0.02, 2.67)));
                     setSkillText("The chamber stabilizes; your herbs are now infused with essence and ready to use.\n"); 
@@ -117,7 +118,7 @@ public class Exorcist {
                 }
             }
             case "Burn Herbs" -> {
-                if (chamberOpened){
+                if (getChamberOpened() == true) {
                     if (skillSuccess(90, skillRange)) {
                         vitals.setSoulFlux(Math.min(130.00, vitals.getSoulFlux() + new Random().nextDouble(3.23, 12.93)));
                         setSkillText("The herbs smolder slowly; the air grows thick with acrid fumes.\n"); 
@@ -171,7 +172,7 @@ public class Exorcist {
             case "Heartbane" -> {
                 if (vitals.getPyricMarks() >= vitals.getRequiredMarks() && !heartBaneUsed) {
                     if (skillSuccess(90, skillRange)) {
-                        heartBaneUsed = true;
+                        setHeartBaneUsed(true);
                         setSkillText("Your strike pierces true; the creature's heart essence dissolves.\n"); 
                     }
                     else {
@@ -182,15 +183,19 @@ public class Exorcist {
                     setSkillText("The creature's heart is still strong; more Pyric Marks are needed or you've used it already, think wise.\n");
                 }
             }
-            // case "Kepweng's Potion" -> {
-            //     if (skillSuccess(90, skillRange)) {
-            //         vitals.setRitualGround(setVitals.getRitualGroundValue()+10);
-            //         setSkillText("The potion suppressed the creature's aura pulse; it is now stable.\n"); 
-            //     }
-            //     else {
-            //         setSkillText("You used the wrong potion; the creature has gone on a rampage.\n");
-            //     }
-            // }
+            case "Kepweng's Potion" -> {
+                if (vitals.getAuraPulse() == Vitals.AuraPulse.CHAOTIC){
+                    if (skillSuccess(90, skillRange)) {
+                        vitals.setAuraPulse(vitals.getAuraPulseValue() - (new java.util.Random().nextBoolean() ? 1 : 7));
+                        setSkillText("The potion suppressed the creature's aura pulse; it is now stable.\n"); 
+                    }
+                    else {
+                        setSkillText("You used the wrong potion; the creature has gone on a rampage.\n");
+                    }
+                } else {
+                    setSkillText("The creature's aura pulse is not chaotic; the potion can't be used.\n");
+                }
+            }
         
             case "Invoke Fire" -> {
                 if (vitals.getPyricMarks() >= 1){
@@ -206,43 +211,59 @@ public class Exorcist {
                     setSkillText("The creature resists; no Pyric Marks to fuel the fire.\n");
                 }
             }
-            // case "Holy Water" -> {
-            //     if (skillSuccess(90, skillRange)) {
-            //         vitals.setRitualGround(setVitals.getRitualGroundValue()+10);
-            //         setSkillText("The water sizzles - corruption successfully fades. \n"); 
-            //     }
-            //     else {
-            //         setSkillText("You accidentally drank the water due to thirst\n");
-            //     }
-            // }
-            
-            // case "Sprinkle Salt" -> {
-            //     if (skillSuccess(90, skillRange)) {
-            //         vitals.setRitualGround(setVitals.getRitualGroundValue()+10);
-            //         setSkillText("The salt purifies the essence; corruption fades.\n"); 
-            //     }
-            //     else {
-            //         setSkillText("You used iodized salt. Nothing happens.\n");
-            //     }
-            // }
-            // case "Garlic Blast" -> {
-            //     if (skillSuccess(90, skillRange)) {
-            //         vitals.setRitualGround(setVitals.getRitualGroundValue()+10);
-            //         setSkillText("The garlic fumes sting; possession weakens.\n"); 
-            //     }
-            //     else {
-            //         setSkillText("You tossed stale garlic; it had no effect.\n");
-            //     }
-            // }
-            // case "Rosary" -> {
-            //     if (skillSuccess(90, skillRange)) {
-            //         vitals.setRitualGround(setVitals.getRitualGroundValue()+10);
-            //         setSkillText("Hallelujah! Your faith has been restored and strengthened.\n"); 
-            //     }
-            //     else {
-            //         setSkillText("Your rosary snaps into pieces.\n");
-            //     }
-            // }
+            case "Holy Water" -> {
+                if (getHeartbaneUsed() == true && vitals.getChanneling() > 5 && vitals.getSoulFlux() > 80.0 && vitals.getFaithState() == Vitals.FaithState.NORMAL
+                    && vitals.getUncorrupted() == 0 && vitals.getPossessed() == 0 && vitals.getPyricMarks() == 0) {
+                    if (skillSuccess(90, skillRange)) {
+                        setHeartBaneUsed(true);
+                        setSkillText("The water sizzles - corruption successfully fades. \n"); 
+                    }
+                    else {
+                        setSkillText("You accidentally drank the water due to thirst\n");
+                    }
+                }
+                else {
+                    setSkillText("The holy water has no effect; the creature's essence remains intact.\n");
+                }
+            }
+            case "Sprinkle Salt" -> {
+                if (vitals.isRareCreatureEncountered() ==  true) {
+                    if (skillSuccess(90, skillRange)) {
+                        vitals.setUncorrupted(Math.max(0, vitals.getUncorrupted() - 1));
+                        setSkillText("The salt purifies the essence; corruption fades.\n"); 
+                    }
+                    else {
+                        setSkillText("You used iodized salt. Nothing happens.\n");
+                    }
+                }
+                else {
+                    setSkillText("The creature is common; salt has no special effect.\n");
+                }
+            }
+            case "Garlic Blast" -> {
+                if (vitals.isRareCreatureEncountered() ==  true) {
+                    if (skillSuccess(90, skillRange)) {
+                        vitals.setPossessed(Math.max(0, vitals.getPossessed() - 1));
+                        vitals.setUncorrupted(vitals.getUncorrupted() + 1);
+                        setSkillText("The garlic fumes sting; possession weakens.\n"); 
+                    }
+                    else {
+                        setSkillText("You tossed stale garlic; it had no effect.\n");
+                    }
+                }
+                else {
+                    setSkillText("The creature is common; garlic has no special effect.\n");
+                }
+            }
+            case "Rosary" -> {
+                if (skillSuccess(90, skillRange)) {
+                    vitals.setRitualGround(Math.min(10, vitals.getFaithStateValue() + new Random().nextInt(1,3)));
+                    setSkillText("Hallelujah! Your faith has been restored and strengthened.\n"); 
+                }
+                else {
+                    setSkillText("Your rosary snaps into pieces.\n");
+                }
+            }
             default -> {
                     System.out.println("Skill not implemented yet.");
             }
@@ -256,7 +277,6 @@ public class Exorcist {
         }
         if (vitals.getSpiritualVision() == Vitals.SpiritualVision.VEILED){
             this.lightRange = 100;
-            // Do not modify ritual ground here — only Draw Circle should change it on success.
         }
         else if (vitals.getSpiritualVision() == Vitals.SpiritualVision.FLICKERING){
             this.lightRange = 150;
@@ -289,7 +309,34 @@ public class Exorcist {
         return new Random().nextInt(lightRange) <= chancePercent;
     } 
 
+    public void resetSkillRanges() {
+        this.skillRange = 1000;
+        this.boundRange = 800;
+        this.lightRange = 800;
+    }
+
+    public void setThirdEyeUsed(boolean used) {
+        this.thirdEyeUsed = used;
+    }
+    public void setHeartBaneUsed(boolean used) {
+        this.heartBaneUsed = used;
+    }
+    public void setHolyWaterUsed(boolean used) {
+        this.holyWaterUsed = used;
+    }
+    public void setChamberOpened(boolean opened) {
+        this.chamberOpened = opened;
+    }
+    public boolean getThirdEyeUsed() {
+        return thirdEyeUsed;
+    }
     public boolean getHeartbaneUsed() {
         return heartBaneUsed;
-    }   
+    } 
+    public boolean getHolyWaterUsed() {
+        return holyWaterUsed;
+    }
+    public boolean getChamberOpened() {
+        return chamberOpened;
+    }
 }

@@ -18,5 +18,6 @@ public final class Kapre extends Creature {
         vitals.setUncorrupted(1);
         vitals.setPossessed(0);
         vitals.setChanneling(10);
+        vitals.setRareCreatureEncountered(false);
     }
 }

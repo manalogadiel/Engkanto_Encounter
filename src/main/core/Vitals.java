@@ -24,8 +24,10 @@ public class Vitals {
     private int ritualGroundValue;
     private int spiritualVisionValue; 
     private int faithStateValue;
-
     private int requiredMarks;
+
+    private boolean rareCreatureEncountered;
+
     // Helper methods to map integer values to enum types
     public static AuraPulse getAuraPulseFromInt(int value) {
         if (value == 10) return null; // auto lose, handle in game logic
@@ -79,6 +81,11 @@ public class Vitals {
     public int getFaithStateValue() { return faithStateValue; }
     public int getRequiredMarks() { return requiredMarks; } 
     
+    public boolean isRareCreatureEncountered() { return rareCreatureEncountered; }
+
+    public void setRareCreatureEncountered(boolean encountered) { 
+        this.rareCreatureEncountered = encountered; 
+    }
     public void setAuraPulse(int auraPulseValue) { 
         this.auraPulse = getAuraPulseFromInt(auraPulseValue); 
         this.auraPulseValue = auraPulseValue;

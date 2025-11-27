@@ -21,5 +21,6 @@ public final class Tiyanak extends Creature {
         vitals.setPossessed(1);
         vitals.setChanneling(10);
         vitals.setRequiredMarks(new Random().nextInt(2,4));
+        vitals.setRareCreatureEncountered(false);
     }
 }
