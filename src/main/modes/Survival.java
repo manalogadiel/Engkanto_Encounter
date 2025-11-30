@@ -22,9 +22,9 @@ public class Survival {
         Random random = new Random();
         Exorcist survivalExorcist = new Exorcist();
         boolean survivalLost = false;
-        boolean userExitedGame = false; // Add this flag
+        boolean userExitedGame = false; 
         
-        while (!survivalLost && !userExitedGame) { // Check both conditions
+        while (!survivalLost && !userExitedGame) { 
             int index = random.nextInt(creatures.length); 
             Creature encounter = creatures[index];    
 

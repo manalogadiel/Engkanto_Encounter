@@ -47,20 +47,20 @@ public abstract class Creature {
             "Spiritual Vision: " + vitals.getSpiritualVision()
         );
     
-            if (vitals.getUncorrupted() > 0 || vitals.getPossessed() > 0) {
-                System.out.println("Essence: " + vitals.getUncorrupted() + " Uncorrupted, " + vitals.getPossessed() + " Possessed");
-            }
+        if (vitals.getUncorrupted() > 0 || vitals.getPossessed() > 0) {
+            System.out.println("Essence: " + vitals.getUncorrupted() + " Uncorrupted, " + vitals.getPossessed() + " Possessed");
+        }
 
-            if (vitals.getChanneling() <= 1) {
-                System.out.println("\nThe creature is channeling a catastrophic amount of energy.");
-            } else if (vitals.getChanneling() <= 5) {
-                System.out.println("\nThe creature is channeling its energy!");
-            }
-            if (vitals.getFaithStateValue() >= 2 && vitals.getFaithStateValue() <= 4) {
-                System.out.println("Your Divine faith starts to waver out of fear.");
-            } else if (vitals.getFaithStateValue() <= 1) {
-                System.out.println("The creature is showing signs of faltering in its faith.");
-            }
+        if (vitals.getChanneling() <= 1) {
+            System.out.println("\nThe creature is channeling a catastrophic amount of energy.");
+        } else if (vitals.getChanneling() <= 5) {
+            System.out.println("\nThe creature is channeling its energy!");
+        }
+        if (vitals.getFaithStateValue() >= 2 && vitals.getFaithStateValue() <= 4) {
+            System.out.println("Your Divine faith starts to waver out of fear.");
+        } else if (vitals.getFaithStateValue() <= 1) {
+            System.out.println("The creature is showing signs of faltering in its faith.");
+        }
     }
 
     @Override

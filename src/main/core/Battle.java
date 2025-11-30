@@ -35,7 +35,7 @@ public class Battle {
         setFirstText(hiddenCreature[index]);
 
         while(!endGame){
-            Vitals vitals = enemy.getVitals();
+            // Vitals vitals = enemy.getVitals();
             game.clearScreen();
             System.out.println(firstText);
             
@@ -45,9 +45,10 @@ public class Battle {
             System.out.println("");
 
             System.out.print(userText);
-            enemy.showBane();
-            System.out.println("Faith State val: " + vitals.getFaithStateValue());
-            System.out.println("Channeling val: " + vitals.getChanneling());
+            // we used this a while back for debugging
+            // enemy.showBane();
+            // System.out.println("Faith State val: " + vitals.getFaithStateValue());
+            // System.out.println("Channeling val: " + vitals.getChanneling());
             exorcist.showSkills();
             
 
@@ -73,11 +74,11 @@ public class Battle {
             // Handle exit command (case-insensitive)
             if (input.equalsIgnoreCase("E")) {
                 if (confirmExit()) {
-                    this.userExited = true; // Set the exit flag
+                    this.userExited = true;
                     this.endGame = true;
                     break;
                 } else {
-                    continue; // Go back to the start of the loop
+                    continue;
                 }
             }
             
@@ -88,8 +89,8 @@ public class Battle {
                 if (choice < 1 || choice > 15) {
                     System.out.println("Invalid input! Please enter a number between 1 and 15.");
                     System.out.println("Press Enter to continue...");
-                    scanner.nextLine(); // Wait for user to press Enter
-                    continue; // Go back to the start of the loop
+                    scanner.nextLine(); 
+                    continue; 
                 }
                 
                 exorcist.useSkill(choice, enemy);
@@ -98,7 +99,7 @@ public class Battle {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a number between 1 and 15 or 'E' to exit.");
                 System.out.println("Press Enter to continue...");
-                scanner.nextLine(); // Wait for user to press Enter
+                scanner.nextLine();
             }
         }
     }
@@ -106,10 +107,10 @@ public class Battle {
     private boolean confirmExit() {
         System.out.print("Are you sure you want to exit? Press Enter to confirm exit, or any other key to continue: ");
         String confirmation = scanner.nextLine().trim();
-        return confirmation.isEmpty(); // Exit if user just presses Enter
+        return confirmation.isEmpty(); 
     }
     
-    // Add this getter method to check if user exited
+
     public boolean didUserExit() {
         return userExited;
     }
