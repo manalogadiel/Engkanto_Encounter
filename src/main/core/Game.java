@@ -45,7 +45,7 @@ public class Game {
         
         if (scanner.hasNextInt()) {
             choice = scanner.nextInt();
-            scanner.nextLine(); // Clear the buffer after nextInt()
+            scanner.nextLine(); 
             clearScreen();
             try {
                 switch (choice) {
@@ -82,14 +82,14 @@ public class Game {
             }
         } else {
             System.out.println("Invalid input! Please enter a number.");
-            scanner.nextLine(); // Clear the invalid input from buffer
+            scanner.nextLine(); 
             waitForEnter();
         }
     }
 
     public void waitForEnter() {
         System.out.print("Press Enter to continue...");
-        scanner.nextLine(); // Wait for user to press Enter
+        scanner.nextLine(); 
     }
 
     public static void clearScreen() {

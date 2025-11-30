@@ -111,13 +111,12 @@ public class Story2 {
             }, creatures[6], "Tikbalang: Engkanto! patawarin mo ang kahinaan namin!\nYou obtained a ring's shard (8/8).")
     };
 
-    // ADD THIS CONSTRUCTOR - This was missing
+    
     public Story2() {
         this.scanner = new Scanner(System.in);
     }
 
     public void start() throws InterruptedException {
-        // --- FIX: The "Blank Screen" Solver ---
         StoryUtils.clearScreen();
         System.out.println("Quick Tip: Use [s + enter] to skip animation...");
         Thread.sleep(1000);
