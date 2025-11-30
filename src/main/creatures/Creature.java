@@ -1,18 +1,19 @@
 package creatures;
 
+import core.Exorcist;
 import core.Vitals;
 
 public abstract class Creature {
     protected String name;
     protected Vitals vitals;
+    protected Exorcist exorcist;
 
     public Creature(String name) {
         this.name = name;
-        this.vitals = new Vitals(); // default, can override later
-        
+        this.vitals = new Vitals();
+        this.exorcist = new Exorcist();
     }
 
-    // Each creature will define its own starting vitals
     protected abstract void setStartingVitals();
 
     public String getName() {
@@ -22,7 +23,13 @@ public abstract class Creature {
     public Vitals getVitals() {
         return vitals;
     }
-
+    
+    public Exorcist getExorcist() {
+        return exorcist;
+    }
+    public void showBane(){
+        System.out.println("Heart Bane used: " + exorcist.getHeartBaneUsed());
+    }
     public void showVitals() {
         System.out.printf(
             "%-25s %-25s%n",
@@ -44,10 +51,10 @@ public abstract class Creature {
                 System.out.println("Essence: " + vitals.getUncorrupted() + " Uncorrupted, " + vitals.getPossessed() + " Possessed");
             }
 
-            if (vitals.getChanneling() <= 5) {
-                System.out.println("\nThe creature is channeling its energy!");
-            } else if (vitals.getChanneling() <= 3) {
+            if (vitals.getChanneling() <= 3) {
                 System.out.println("\nThe creature is channeling a catastrophic amount of energy.");
+            } else if (vitals.getChanneling() <= 5) {
+                System.out.println("\nThe creature is channeling its energy!");
             }
     }
     // to apply faltering logic by base 10 integer, 0-1 means faltered 0 is lose but 1 is chance, 2-4 means starting to falter, 5 above is normal

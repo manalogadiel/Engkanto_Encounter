@@ -12,12 +12,15 @@ public final class Kapre extends Creature {
         vitals.setAuraPulse(2);
         vitals.setSoulFlux(70.0);
         vitals.setPyricMarks(0);
-        vitals.setConsciousness(0);
+        vitals.setConsciousness(10);
         vitals.setRitualGround(0);
         vitals.setSpiritualVision(0);
-        vitals.setUncorrupted(1);
+        vitals.setUncorrupted(0);
         vitals.setPossessed(0);
         vitals.setChanneling(10);
+        vitals.setFaithState(10);
         vitals.setRareCreatureEncountered(false);
+        exorcist.setHeartBaneUsed(false);
+        
     }
 }

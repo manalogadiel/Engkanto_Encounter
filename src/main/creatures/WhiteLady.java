@@ -15,9 +15,11 @@ public final class WhiteLady extends Creature {
         vitals.setConsciousness(7);
         vitals.setRitualGround(0);
         vitals.setSpiritualVision(0);
-        vitals.setUncorrupted(1);
-        vitals.setPossessed(1);
+        vitals.setUncorrupted(0);
+        vitals.setPossessed(0);
         vitals.setChanneling(10);
+        vitals.setFaithState(10);
         vitals.setRareCreatureEncountered(false);
+        exorcist.setHeartBaneUsed(false);
     }
 }

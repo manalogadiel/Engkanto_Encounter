@@ -28,6 +28,15 @@ public class Vitals {
 
     private boolean rareCreatureEncountered;
 
+    public Vitals() {
+        // Initialize enum fields to defaults to prevent null
+        this.auraPulse = AuraPulse.CORRUPTED;
+        this.consciousness = Consciousness.DORMANT;
+        this.ritualGround = RitualGround.UNMARKED;
+        this.spiritualVision = SpiritualVision.VEILED;
+        this.faithState = FaithState.NORMAL;
+    }
+
     // Helper methods to map integer values to enum types
     public static AuraPulse getAuraPulseFromInt(int value) {
         if (value == 10) return null; // auto lose, handle in game logic
@@ -57,8 +66,8 @@ public class Vitals {
     }
 
     public static FaithState getFaithStateFromInt(int value) {
-        if (value >= 7) return FaithState.NORMAL;
-        if (value >= 4) return FaithState.WAVERING;
+        if (value >= 3) return FaithState.NORMAL;
+        if (value >= 2) return FaithState.WAVERING;
         return FaithState.FALTERED;
     }
 
@@ -80,7 +89,7 @@ public class Vitals {
     public int getSpiritualVisionValue() { return spiritualVisionValue; }
     public int getFaithStateValue() { return faithStateValue; }
     public int getRequiredMarks() { return requiredMarks; } 
-    
+    public int getChannelingValue() { return channeling; }
     public boolean isRareCreatureEncountered() { return rareCreatureEncountered; }
 
     public void setRareCreatureEncountered(boolean encountered) { 

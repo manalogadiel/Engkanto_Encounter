@@ -18,6 +18,8 @@ public final class Engkanto extends Creature {
         vitals.setUncorrupted(2);
         vitals.setPossessed(0);
         vitals.setChanneling(10);
-        
+        vitals.setFaithState(10);
+        vitals.setRareCreatureEncountered(true);
+        exorcist.setHeartBaneUsed(true);
     }
 }

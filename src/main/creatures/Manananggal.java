@@ -20,7 +20,9 @@ public final class Manananggal extends Creature {
         vitals.setUncorrupted(0);
         vitals.setPossessed(2);
         vitals.setChanneling(10);
+        vitals.setFaithState(10);
         vitals.setRequiredMarks(new Random().nextInt(2,4));
         vitals.setRareCreatureEncountered(true);
+        exorcist.setHeartBaneUsed(true);
     }
 }
