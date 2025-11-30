@@ -25,10 +25,9 @@ public class Battle {
 
     public void start() {
         Random random = new Random();
-        
+        Game game = new Game();
         String[] hiddenCreature = {
             "The shadows shift, but nothing reveals itself.",
-            "You feel eyes watching you from the shadows.",
             "You feel eyes watching you from the shadows."
         };
         int index = random.nextInt(hiddenCreature.length);
@@ -36,7 +35,7 @@ public class Battle {
 
         while(!endGame){
             Vitals vitals = enemy.getVitals();
-            Game.clearScreen();
+            game.clearScreen();
             System.out.println(firstText);
             
             System.out.println();

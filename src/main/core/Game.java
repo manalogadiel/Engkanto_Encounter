@@ -5,9 +5,9 @@ import modes.*;
 
 public class Game {
     Survival survival = new Survival();
-    Story2 story = new Story2();
+    Story story = new Story();
     private boolean exitTriggered = false;
-    private final Scanner scanner = new Scanner(System.in); // Create ONE scanner
+    private final Scanner scanner = new Scanner(System.in);
 
     public boolean isExitTriggered() {
         return exitTriggered;
@@ -20,7 +20,6 @@ public class Game {
                 printBanner();
                 showMenu();
             }
-            // Close scanner only when game ends
         }
     }
 
@@ -92,7 +91,7 @@ public class Game {
         scanner.nextLine(); 
     }
 
-    public static void clearScreen() {
+    public void clearScreen() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }   

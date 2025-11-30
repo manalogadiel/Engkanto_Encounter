@@ -229,7 +229,7 @@ public class Exorcist {
             case "Invoke Fire" -> {
                 if (vitals.getPyricMarks() >= 1){
                     if (skillSuccess(90, skillRange)) {
-                        vitals.setChanneling(Math.max(0, vitals.getChanneling() - (new Random().nextInt(1,2))));
+                        vitals.setChanneling(Math.min(10, vitals.getChanneling() + (new Random().nextInt(1,2))));
                         vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - new Random().nextInt(1,2)));
                         vitals.setSpiritualVision(Math.min(10, vitals.getSpiritualVisionValue() + (new Random().nextInt(1))));
                         setSkillText("The fire surges and burns away lingering channeling.\n"); 
@@ -392,6 +392,14 @@ public class Exorcist {
     }
     public void setGameLose(boolean lose) {
         this.gameLose = lose;
+    }
+
+    public void resetForBattle() {
+        this.chamberOpened = false;
+        this.thirdEyeUsed = false;
+        this.holyWaterUsed = false;
+        this.heartBaneUsed = false;
+        this.gameLose = false; 
     }
     public boolean getThirdEyeUsed() {
         return thirdEyeUsed;

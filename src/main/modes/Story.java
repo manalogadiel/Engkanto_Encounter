@@ -5,7 +5,7 @@ import creatures.*;
 import java.util.Scanner;
 import levels.*;
 
-public class Story2 {
+public class Story {
     private final Scanner scanner;
     private final int delay = 40;
 
@@ -112,7 +112,7 @@ public class Story2 {
     };
 
     
-    public Story2() {
+    public Story() {
         this.scanner = new Scanner(System.in);
     }
 
@@ -147,7 +147,12 @@ public class Story2 {
         // Play all levels
         for (int i = 0; i < levels.length; i++) {
             System.out.println("\nLEVEL " + (i + 1) + "\n");
-            levels[i].play(scanner, delay); 
+            boolean continuePlaying = levels[i].play(scanner, delay); 
+
+            if (!continuePlaying) {
+                // Player chose to exit to main menu
+                return; // This will exit the Story mode and return to main menu
+            }
         }
 
         // Final battle
