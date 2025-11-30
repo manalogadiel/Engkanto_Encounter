@@ -50,9 +50,40 @@ The system uses ritual-based mechanics, creature attributes, and dynamic combat 
 └── README.md
 
 ```
-- `Main.java` - Entry point of the program, containing the menu and handles user interactions.
-- `Diary.java` - Handles the diary operations (CRUD)
-- `FileHandler.java` - Handles file creation, reading, writing, and appending.
+## Main Package
+
+- `Main.java` - Entry point of the program that initializes the game and starts the main game loop.
+
+## Core Package
+
+- `Game.java` - Manages the main menu, mode selection, and overall game flow.
+- `Battle.java` - Handles battle mechanics, turn-based combat system, and win/lose conditions.
+- `Exorcist.java` - Manages the player's skills, inventory, and skill execution logic.
+- `Vitals.java` - Stores and manages creature statistics including enums for game states.
+
+## Creatures Package
+
+- `Creature.java` - Abstract base class defining common properties and methods for all creatures.
+- `Duwende.java` - Duwende creature implementation with specific starting vitals.
+- `WhiteLady.java` - White Lady creature implementation with specific starting vitals.
+- `Tiyanak.java` - Tiyanak creature implementation with specific starting vitals.
+- `Kapre.java` - Kapre creature implementation with specific starting vitals.
+- `Tikbalang.java` - Tikbalang creature implementation with specific starting vitals.
+- `Tiktik.java` - Tiktik creature implementation with specific starting vitals.
+- `Manananggal.java` - Manananggal creature implementation with specific starting vitals.
+- `Sirena.java` - Sirena creature implementation with specific starting vitals.
+- `Engkanto.java` - Engkanto creature implementation (final boss) with specific starting vitals.
+
+## Modes Package
+
+- `Story.java` - Implements story mode with sequential level progression and narrative elements.
+- `Survival.java` - Implements survival mode with randomized creature encounters.
+
+## Levels Package
+
+- `Level.java` - Manages individual story levels including narrative, battles, and progression.
+- `StoryUtils.java` - Utility class for text display, screen clearing, and story animations.
+  
 ### How to Run the Program
 Requirements
 Java JDK 8 or later
@@ -65,8 +96,7 @@ Run the program using:
 java Main
 ```
 
-## ‧₊˚ ┊ Object-oriented Principles
-# 🎮 Four OOP Principles in Engkanto Encounter
+## 🎮 ┊ Object-oriented Principles
 
 ## 📦 1. Encapsulation
 
@@ -129,7 +159,7 @@ game.start();
 
 </div>
 
-## ‧₊˚ ┊ Example Output
+## ⚙️ ┊ Main Menu Example Output
 ```
 ╔═══════════════════════════════════════╗
 ║ ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓ ║
@@ -145,7 +175,7 @@ game.start();
 Enter your choice:
 ```
 
-##  ‧₊˚ ┊ notes.txt Snippet
+## 🗡️ ┊ Battle Example Output
 ```
 The Tikbalang stands guard at the crossroads, confusing directions.
 
@@ -162,7 +192,7 @@ The veil lifts; the creature's true form manifests before you.
 Choose a skill number to use (1-15) or 'E' to exit:
 ```
 
-##  ‧₊˚ ┊ Contributors
+##  👨🏻‍💻 ┊ Contributors
 
 <table>
 <tr>
@@ -199,6 +229,73 @@ Choose a skill number to use (1-15) or 'E' to exit:
 </tr>
 </table>
 
-##  ‧₊˚ ┊ Acknowledgment
+## 🤝🏻 ┊ Acknowledgment
 We would like to express our gratitude Ms. Fatima Marie P. Agdon for her guidance throughout this project, introducing us to object-oriented programming and breaking down the four principles in a way that made sense. We appreciate all the time she invested in making sure we understood the material.
 We're also grateful to our classmates who made this semester more enjoyable. The late-night coding sessions, debugging help, and shared frustrations and victories! made this project feel less overwhelming. Thank you for keeping things fun even when the code wasn't cooperating!
+
+## 🚀 ┊ Future Enhancements
+- High Score System for Survival Mode
+- Level Checkpoints for Story Mode
+- Expanded creature roster
+- GUI version using JavaFX or Swing
+- Improved balancing and AI behavior
+---
+# More Information
+## Engkanto Encounter 👻
+A development of a console application Strategy/Simulation game inspired by Filipino Mythical Creatures using Java.
+
+Dive into the cursed world engulfed by powerful mythical creatures standing between you and their master - The Engkanto. 
+Bestowed with skills of sorcery and divine prowess, you are the only hope left in these lands so make your choice. 
+Strategically uncover all levels of the mysteries behind this lore (Story mode) or go straight to slaying waves of countless monsters (Survival mode)
+
+# GAME: ENGKANTO ENCOUNTER
+GAME THEME/GENRE : Myth/Strategy/Simulation
+
+# ⚔️ Ritual Abilities and Items
+💧 **Holy Water**
+> Purifies the Ritual Ground to vanish signs or clues of the encountered Engkanto. Used to **finish off the exorcism**.
+
+🧪 **Kepweng’s Potion**
+> **Lowers Aura Pulse**. Only available when pulse is **Chaotic**.
+
+⭕ **Draw Circle**
+> **Bounds the ground** for a battle to settle. Unbounded ground allows the Creature to escape easily.
+
+🕯️ **Light Candle**
+> **Increases visibility** to the Creature.
+
+👁️ **Third Eye**
+> **Identifies the hidden Creature**. Use only when the Creature is **Unknown**.
+
+🔔 **Spirit Bell**
+> Makes the creature **unconscious** to use Ember Rite successfully.
+
+🔥 **Ember Rite**
+> Gains access to Special Skills and Heartbane. Use only when consciousness is **dormant**. Adds Pyric Mark count.
+
+🫙 **Essence Chamber**
+> A container to access Herbs that **increase Soul Flux** index.
+
+🌿 **Burn Herbs**
+> **Increases Soul Flux**. Keep it high for success.
+
+💔 **Heart Bane**
+> When Ember Rite succeeded, this may be accessible to **kill the core** (not a means to complete exorcism).
+
+🙏 **Chant Prayer**
+> Used after Pyric Marks/Enchanted Elements (Salt/Garlic). Decreases **Pyric Marks** and reduces **Channeling**.
+
+🧂 **Sprinkle Salt**
+> Decreases **uncorrupted aura**.
+
+💥 **Garlic Blast**
+> Decreases **Possession strength of aura** as well as **aura pulse**. Using this first is better.
+
+🌋 **Invoke Fire**
+> Reduces **Channeling** (less effective than Chant Prayer).
+
+📿 **Rosary**
+> Used when divine faith is wavering or falters.
+
+
+
