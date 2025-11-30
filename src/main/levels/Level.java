@@ -22,16 +22,22 @@ public class Level {
         Exorcist storyExorcist = new Exorcist();
         boolean storyLost = false;
         boolean returnToMenu = false;
-        
+        boolean userExitedGame = false;
+
         for (String line : storyLines) {
             skipNext = StoryUtils.displayText(scanner, line, delay, skipNext);
         }
-        while (!storyLost && !returnToMenu) {
+        while (!storyLost && !returnToMenu && !userExitedGame) {
             storyExorcist.resetForBattle();
             Battle battle = new Battle(creature, storyExorcist);
             battle.start();
 
-            if (storyExorcist.getGameLose()) {
+            if (battle.didUserExit()) {
+                System.out.println("Exiting level...");
+                userExitedGame = true;
+                returnToMenu = true;
+            }
+            else if (storyExorcist.getGameLose()) {
                 displayDefeatMessage(creature.getName());
                 Game game = new Game();
                 game.waitForEnter();
@@ -58,7 +64,7 @@ public class Level {
                 storyLost = true; 
             }
         }
-        return !returnToMenu;
+        return storyLost && !returnToMenu && !userExitedGame;
     }
 
     private void displayDefeatMessage(String creatureName) {

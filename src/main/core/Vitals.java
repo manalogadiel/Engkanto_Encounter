@@ -66,7 +66,7 @@ public class Vitals {
     }
 
     public static FaithState getFaithStateFromInt(int value) {
-        if (value >= 3) return FaithState.NORMAL;
+        if (value >= 5) return FaithState.NORMAL;
         if (value >= 2) return FaithState.WAVERING;
         return FaithState.FALTERED;
     }

@@ -2,7 +2,9 @@ package core;
 
 import creatures.Creature;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class Exorcist {
@@ -75,7 +77,8 @@ public class Exorcist {
                     if (thirdEyeSuccess(90)) {
                         this.lightRange = 100;
                         this.thirdEyeUsed = true;
-                        Battle.setFirstText("A (doing) " + enemy + " (is doing this).");
+                        String revelation = getThirdEyeRevelation(enemy);
+                        Battle.setFirstText(revelation);
                         setSkillText("The veil lifts; the creature's true form manifests before you.\n");
                     }
                     else {
@@ -136,7 +139,8 @@ public class Exorcist {
                         vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,3)));
                         vitals.setChanneling(Math.max(0, vitals.getChanneling() - new Random().nextInt(1,2)));
                         vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - new Random().nextInt(1,2)));
-                         vitals.setSpiritualVision(Math.min(10, vitals.getSpiritualVisionValue() + (new Random().nextInt(1, 2))));
+                        vitals.setSpiritualVision(Math.min(10, vitals.getSpiritualVisionValue() + (new Random().nextInt(1, 2))));
+                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1))));
                         setSkillText("The herbs smolder slowly; the air grows thick with acrid fumes.\n"); 
                     }
                     else {
@@ -158,6 +162,7 @@ public class Exorcist {
                 }
                 else {
                     vitals.setChanneling(Math.max(0, vitals.getChanneling() - (new Random().nextInt(2))));
+                    vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
                     setSkillText("Your voice cracks mid-prayer; no divine response.\n");
                 }
             }
@@ -171,7 +176,9 @@ public class Exorcist {
                         vitals.setPyricMarks(Math.min(10, vitals.getPyricMarks()+1));
                         vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,2)));
                         vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - new Random().nextInt(1,3)));
-                         vitals.setSpiritualVision(Math.min(10, vitals.getSpiritualVisionValue() + (new Random().nextInt(2,3))));
+                        vitals.setSpiritualVision(Math.min(10, vitals.getSpiritualVisionValue() + (new Random().nextInt(2,3))));
+                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1))));
+                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(1.23, 2.93));
                         setSkillText("The flames answer your call; the Ember Rite is fulfilled.\n");
                         if (vitals.getPyricMarks() >= vitals.getRequiredMarks()) {
                             setSkillText("The creature's heart essence has been fully dissolved!\n");
@@ -201,9 +208,11 @@ public class Exorcist {
                         exorcist.setHeartBaneUsed(true);
                         vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,2)));
                         vitals.setChanneling(Math.max(0, vitals.getChanneling() - new Random().nextInt(1,2)));
+                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
                         setSkillText("Your strike pierces true; the creature's heart essence dissolves.\n"); 
                     }
                     else {
+                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
                         setSkillText("The core retaliates; your energy is repelled.\n");
                     }
                 }
@@ -235,6 +244,7 @@ public class Exorcist {
                         setSkillText("The fire surges and burns away lingering channeling.\n"); 
                     }
                     else {
+
                         setSkillText("The flames flicker out; channeling continues.\n");
                     }
                 }
@@ -270,10 +280,12 @@ public class Exorcist {
                         vitals.setSpiritualVision(Math.min(10, vitals.getSpiritualVisionValue() + (new Random().nextInt(1, 2))));
                         setSkillText("The salt purifies the essence; corruption fades.\n");
                         if (vitals.getPossessed() > 0) {
-                           vitals.setUncorrupted(Math.min(10, vitals.getUncorrupted() + 1)); 
+                           vitals.setUncorrupted(Math.min(10, vitals.getUncorrupted() + 1));
+                           vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(3.23, 15.93)); 
                         }
                     }
                     else {
+                        vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,3)));
                         setSkillText("You used iodized salt. Nothing happens.\n");
                     }
                 }
@@ -292,6 +304,8 @@ public class Exorcist {
                         setSkillText("The garlic fumes sting; possession weakens.\n"); 
                     }
                     else {
+                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
+                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(3.23, 15.93));
                         setSkillText("You tossed stale garlic; it had no effect.\n");
                     }
                 }
@@ -299,9 +313,11 @@ public class Exorcist {
                     if (skillSuccess(90, skillRange)) {
                         vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
                         vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - new Random().nextInt(1,2)));
+                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(3.23, 15.93));
                         setSkillText("The garlic fumes sting; possession weakens.\n"); 
                     }
                     else {
+                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
                         setSkillText("You tossed stale garlic; it had no effect.\n");
                     }
                 }
@@ -313,6 +329,7 @@ public class Exorcist {
                     setSkillText("Hallelujah! Your faith has been restored and strengthened.\n"); 
                 }
                 else {
+                    vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
                     setSkillText("Your rosary snaps into pieces.\n");
                 }
             }
@@ -348,6 +365,77 @@ public class Exorcist {
         return false;
     }
 
+    private String getThirdEyeRevelation(Object enemy) {
+        Random random = new Random();
+        String enemyType = enemy.getClass().getSimpleName();
+        
+        Map<String, String[]> revelationMap = new HashMap<>();
+        
+        revelationMap.put("Manananggal", new String[]{
+            "A flying Manananggal is hovering over the rooftops.",
+            "The Manananggal has separated its torso and is searching for prey.",
+            "A winged Manananggal is perched on the church bell tower.",
+            "The Manananggal's true form flies silently under the moonlight."
+            });
+        
+        revelationMap.put("WhiteLady", new String[]{
+            "A weeping White Lady floats through the abandoned hallway.",
+            "The White Lady is brushing her long hair in front of the mirror.",
+            "A translucent White Lady searches for her lost children.",
+            "The White Lady's ghostly form drifts through the old mansion."
+            });
+        
+        revelationMap.put("Duwende", new String[]{
+            "A mischievous Duwende is hiding among the roots of the balete tree.",
+            "The Duwende is tinkering with stolen household items in its burrow.",
+            "A bearded Duwende watches from the shadows of the garden.",
+            "The Duwende is whispering secrets to the earthworms."
+            });
+        
+        revelationMap.put("Tiyanak", new String[]{
+            "A crying Tiyanak is luring travelers deep into the forest.",
+            "The Tiyanak's true form plays cruel tricks on lost children.",
+            "A demonic Tiyanak mimics a baby's cry from the swamp.",
+            "The Tiyanak is waiting to prey on compassionate souls."
+            });
+        
+        revelationMap.put("Kapre", new String[]{
+            "A giant Kapre is smoking a large cigar in the treetops.",
+            "The Kapre watches travelers from its perch in the old acacia tree.",
+            "A massive Kapre is laughing at those who get lost in its domain.",
+            "The Kapre's glowing eyes peer down from the dark canopy."
+            });
+        
+        revelationMap.put("Tikbalang", new String[]{
+            "A towering Tikbalang is leading travelers astray on the mountain path.",
+            "The Tikbalang stands guard at the crossroads, confusing directions.",
+            "A horse-headed Tikbalang is creating illusions in the fog.",
+            "The Tikbalang's shadow looms large over the confused wanderers."
+            });
+        
+        revelationMap.put("Tiktik", new String[]{
+            "A Tiktik is flying overhead, its tongue clicking in the night.",
+            "The Tiktik perches on the roof, searching for pregnant women.",
+            "A winged Tiktik circles above the sleeping village.",
+            "The Tiktik's shadow passes over the moon as it hunts."
+            });
+        
+        revelationMap.put("Sirena", new String[]{
+            "A beautiful Sirena is singing her enchanting song from the rocks.",
+            "The Sirena combs her hair while luring fishermen to their doom.",
+            "A mystical Sirena swims gracefully in the moonlit cove.",
+            "The Sirena's melody echoes across the treacherous waters."
+            });
+        
+        revelationMap.put("Engkanto", new String[]{
+            "A handsome Engkanto is dancing in the enchanted grove.",
+            "The Engkanto charms mortals with its otherworldly beauty.",
+            "A noble Engkanto leads travelers deeper into its magical realm.",
+            "The Engkanto's illusion hides the dangerous truth of the forest."
+            });
+        String[] revelations = revelationMap.getOrDefault(enemyType, new String[]{"The creature's true form is revealed before you."});
+        return revelations[random.nextInt(revelations.length)];
+    }
     public void setSkillText(String skillText) {
         this.skillText = skillText;
     }

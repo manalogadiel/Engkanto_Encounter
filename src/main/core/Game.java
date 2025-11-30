@@ -45,10 +45,10 @@ public class Game {
         if (scanner.hasNextInt()) {
             choice = scanner.nextInt();
             scanner.nextLine(); 
-            clearScreen();
             try {
                 switch (choice) {
                     case 1 -> {
+                        clearScreen();
                         System.out.println("Starting Survival Mode.");
                         Thread.sleep(800);
                         clearScreen();
@@ -61,12 +61,14 @@ public class Game {
                         survival.start();
                     }
                     case 2 -> {
+                        clearScreen();
                         System.out.println("Starting Story Mode...");
                         Thread.sleep(800);
                         clearScreen();
                         story.start();
                     }
                     case 3 -> {
+                        clearScreen();
                         System.out.println("Exiting game. Goodbye!");
                         exitTriggered = true;
                     }
@@ -80,7 +82,7 @@ public class Game {
                 Thread.currentThread().interrupt();
             }
         } else {
-            System.out.println("Invalid input! Please enter a number.");
+            System.out.println("Invalid input! Please enter a number."); 
             scanner.nextLine(); 
             waitForEnter();
         }

@@ -150,8 +150,7 @@ public class Story {
             boolean continuePlaying = levels[i].play(scanner, delay); 
 
             if (!continuePlaying) {
-                // Player chose to exit to main menu
-                return; // This will exit the Story mode and return to main menu
+                return;
             }
         }
 

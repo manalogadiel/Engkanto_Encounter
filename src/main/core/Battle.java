@@ -9,6 +9,7 @@ public class Battle {
     private final Exorcist exorcist;
     
     boolean endGame = false;
+    private boolean userExited = false; // Add this flag
 
     static String firstText = "";
     String userText = "";
@@ -51,21 +52,66 @@ public class Battle {
             
 
             if (exorcist.getGameLose() == true) {
-                System.out.println("Your vitals have dropped too low. You lose the battle.");
+                game.clearScreen();
+                displayGameOver();
+                System.out.print("Press Enter to exit...");
+                scanner.nextLine(); 
                 this.endGame = true;
                 break;
             }
             else if (exorcist.getHolyWaterUsed() == true) {
-                System.out.println("You have used Holy Water. The battle ends.");
+                game.clearScreen();
+                displayVictory();
+                System.out.print("Press Enter to continue...");
+                scanner.nextLine(); 
                 break;
             }
 
-            System.out.print("Choose a skill number to use: ");
-            int choice = scanner.nextInt();
-
-            exorcist.useSkill(choice, enemy);
-            setSecondText(choice);
+            System.out.print("Choose a skill number to use (1-15) or 'E' to exit: ");
+            String input = scanner.nextLine().trim();
+            
+            // Handle exit command (case-insensitive)
+            if (input.equalsIgnoreCase("E")) {
+                if (confirmExit()) {
+                    this.userExited = true; // Set the exit flag
+                    this.endGame = true;
+                    break;
+                } else {
+                    continue; // Go back to the start of the loop
+                }
+            }
+            
+            // Handle numeric input
+            try {
+                int choice = Integer.parseInt(input);
+                
+                if (choice < 1 || choice > 15) {
+                    System.out.println("Invalid input! Please enter a number between 1 and 15.");
+                    System.out.println("Press Enter to continue...");
+                    scanner.nextLine(); // Wait for user to press Enter
+                    continue; // Go back to the start of the loop
+                }
+                
+                exorcist.useSkill(choice, enemy);
+                setSecondText(choice);
+                
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a number between 1 and 15 or 'E' to exit.");
+                System.out.println("Press Enter to continue...");
+                scanner.nextLine(); // Wait for user to press Enter
+            }
         }
+    }
+    
+    private boolean confirmExit() {
+        System.out.print("Are you sure you want to exit? Press Enter to confirm exit, or any other key to continue: ");
+        String confirmation = scanner.nextLine().trim();
+        return confirmation.isEmpty(); // Exit if user just presses Enter
+    }
+    
+    // Add this getter method to check if user exited
+    public boolean didUserExit() {
+        return userExited;
     }
     
     public static void setFirstText(String creatureText) {
@@ -79,4 +125,38 @@ public class Battle {
     public boolean isLost() {
         return exorcist.getGameLose();
     }
+
+    private void displayGameOver() {
+        System.out.println();
+        System.out.println("╔════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                                                                                ║");
+        System.out.println("║    ██████   █████  ███    ███ ███████      ██████  ██    ██ ███████ ██████     ║");
+        System.out.println("║   ██       ██   ██ ████  ████ ██          ██    ██ ██    ██ ██      ██   ██    ║");
+        System.out.println("║   ██   ███ ███████ ██ ████ ██ █████       ██    ██ ██    ██ █████   ██████     ║");
+        System.out.println("║   ██    ██ ██   ██ ██  ██  ██ ██          ██    ██  ██  ██  ██      ██   ██    ║");
+        System.out.println("║    ██████  ██   ██ ██      ██ ███████      ██████    ████   ███████ ██   ██    ║");
+        System.out.println("║                                                                                ║");
+        System.out.println("║                        The darkness has consumed you...                        ║");
+        System.out.println("║                  The creatures continue to terrorize the world.                ║");
+        System.out.println("║                                                                                ║");
+        System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println();
+    }
+    private void displayVictory() {
+        System.out.println();
+        System.out.println("╔════════════════════════════════════════════════════════════════════════════════╗");
+        System.out.println("║                                                                                ║");
+        System.out.println("║            ██    ██ ██  ██████ ████████  ██████  ██████  ██    ██              ║");
+        System.out.println("║            ██    ██ ██ ██         ██    ██    ██ ██   ██  ██  ██               ║");
+        System.out.println("║            ██    ██ ██ ██         ██    ██    ██ ██████    ████                ║");
+        System.out.println("║             ██  ██  ██ ██         ██    ██    ██ ██   ██    ██                 ║");
+        System.out.println("║              ████   ██  ██████    ██     ██████  ██   ██    ██                 ║");
+        System.out.println("║                                                                                ║");
+        System.out.println("║                    Light has triumphed over the shadows!                       ║");
+        System.out.println("║             The cursed creature has been cleansed from this realm.             ║");
+        System.out.println("║                                                                                ║");
+        System.out.println("╚════════════════════════════════════════════════════════════════════════════════╝");
+        System.out.println();
+}
+
 }
