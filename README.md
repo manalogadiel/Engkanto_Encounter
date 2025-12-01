@@ -87,9 +87,9 @@ The system uses ritual-based mechanics, creature attributes, and dynamic combat 
 ### How to Run the Program
 Requirements
 Java JDK 8 or later
-Open your terminal in the `src/` folder and run:
+Open your terminal in the `src/main` folder and run:
 ```
-javac */*.java */*/*.java Main.java
+javac Main.java core/*.java creatures/*.java levels/*.java modes/*.java
 ```
 Run the program using:
 ```
