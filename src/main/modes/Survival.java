@@ -6,18 +6,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 public class Survival {
-    private final Creature[] creatures = {
-        new Duwende(),
-        new WhiteLady(),
-        new Tiyanak(),
-        new Kapre(),
-        new Tikbalang(),
-        new Tiktik(),
-        new Manananggal(),
-        new Sirena(),
-        new Engkanto()
-    };
-
+    
     public void start() throws InterruptedException {
         Random random = new Random();
         Exorcist survivalExorcist = new Exorcist();
@@ -25,9 +14,19 @@ public class Survival {
         boolean userExitedGame = false; 
         
         while (!survivalLost && !userExitedGame) { 
-            int index = random.nextInt(creatures.length); 
-            Creature encounter = creatures[index];    
-
+            Creature encounter = switch(random.nextInt(9)) {
+                case 0 -> new Duwende();
+                case 1 -> new WhiteLady();
+                case 2 -> new Tiyanak();
+                case 3 -> new Kapre();
+                case 4 -> new Tikbalang();
+                case 5 -> new Tiktik();
+                case 6 -> new Manananggal();
+                case 7 -> new Sirena();
+                default -> new Engkanto();
+            };
+            
+            survivalExorcist.resetForBattle();
             Battle battle = new Battle(encounter, survivalExorcist);
             battle.start();
 

@@ -27,6 +27,11 @@ public abstract class Creature {
     public Exorcist getExorcist() {
         return exorcist;
     }
+
+    public void resetVitals() {
+        setStartingVitals();
+        exorcist.resetForBattle();
+    }
     public void showBane(){
         System.out.println("Heart Bane used: " + exorcist.getHeartBaneUsed());
     }

@@ -9,7 +9,7 @@ public class Battle {
     private final Exorcist exorcist;
     
     boolean endGame = false;
-    private boolean userExited = false; // Add this flag
+    private boolean userExited = false; 
 
     static String firstText = "";
     String userText = "";
@@ -49,6 +49,7 @@ public class Battle {
             // enemy.showBane();
             // System.out.println("Faith State val: " + vitals.getFaithStateValue());
             // System.out.println("Channeling val: " + vitals.getChanneling());
+            // System.out.println(vitals.getSpiritualVisionValue());
             exorcist.showSkills();
             
 
@@ -65,6 +66,7 @@ public class Battle {
                 displayVictory();
                 System.out.print("Press Enter to continue...");
                 scanner.nextLine(); 
+                exorcist.resetForBattle();
                 break;
             }
 

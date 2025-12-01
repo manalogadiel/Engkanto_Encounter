@@ -5,15 +5,16 @@ import core.Exorcist;
 import core.Game;
 import creatures.Creature;
 import java.util.Scanner;
+import java.util.function.Supplier;
 
 public class Level {
     private final String[] storyLines;
-    private final Creature creature;
+    private final Supplier<Creature> creatureSupplier;
     private final String shardText;
 
-    public Level(String[] storyLines, Creature creature, String shardText) {
+    public Level(String[] storyLines, Supplier<Creature> creatureSupplier, String shardText) {
         this.storyLines = storyLines;
-        this.creature = creature;
+        this.creatureSupplier = creatureSupplier;
         this.shardText = shardText;
     }
 
@@ -29,6 +30,7 @@ public class Level {
         }
         while (!storyLost && !returnToMenu && !userExitedGame) {
             storyExorcist.resetForBattle();
+            Creature creature = creatureSupplier.get();
             Battle battle = new Battle(creature, storyExorcist);
             battle.start();
 
@@ -53,7 +55,7 @@ public class Level {
                     System.out.println("Thanks for playing! The creatures continue to terrorize the world...");
                     returnToMenu = true;
                 }
-                // If choice is "1" or anything else, loop continues and battle restarts
+                
                 if (returnToMenu) {
                     System.out.println("RESTARTING LEVEL...");
                 }

@@ -9,12 +9,6 @@ public class Story {
     private final Scanner scanner;
     private final int delay = 40;
 
-    private final Creature[] creatures = {
-            new Duwende(), new WhiteLady(), new Engkanto(),
-            new Kapre(), new Manananggal(), new Tiyanak(),
-            new Tikbalang(), new Sirena(), new Tiktik()
-    };
-
     private final Level[] levels = {
             // LEVEL 1 - Duwende
             new Level(new String[]{
@@ -24,7 +18,7 @@ public class Story {
                     "You noticed a glowing shard, sticking out of that mound.",
                     "You: Akin na ang hiyas na iyan!",
                     "Duwende: Peste! kunin mo kung kaya mo."
-            }, creatures[0], "Duwende: Sige kunin mo. Pero ngayong hawak mo na yan, mamamataan ka na ng iba at siguradong di na tatagal ang buhay mo.\nYou obtained a ring's shard (1/8)."),
+            }, () -> new Duwende(), "Duwende: Sige kunin mo. Pero ngayong hawak mo na yan, mamamataan ka na ng iba at siguradong di na tatagal ang buhay mo.\nYou obtained a ring's shard (1/8)."),
 
             // LEVEL 2 - Sirena
             new Level(new String[]{
@@ -36,7 +30,7 @@ public class Story {
                     "Sirena: Tinitingnan mo ba ang napakaganda kong hiyas?",
                     "You: Ibigay mo sa akin iyan, kung hindi ay pwersahan ko yang kukunin mula sa'yo!",
                     "Sirena: Subukan mo!"
-            }, creatures[7], "Sirena: Nakaligtas ka sa pagkakataong ito.\nYou obtained a ring's shard (2/8)."),
+            }, () -> new Sirena(), "Sirena: Nakaligtas ka sa pagkakataong ito.\nYou obtained a ring's shard (2/8)."),
 
             // LEVEL 3 - Tiyanak
             new Level(new String[]{
@@ -45,7 +39,7 @@ public class Story {
                     "You: Sanggol ba yun? anong ginagawa ng sanggol sa ganitong lugar at sa ganitong oras?",
                     "You finally found the source of those cries, it was an infant lying down on a stone as it cries for its mother.",
                     "You: Baby, tahan na, baka marinig tayo ng mga lamang lupa!"
-            }, creatures[5], "You: Muntik mo na akong malinlang!\nYou obtained a ring's shard (3/8)."),
+            }, () -> new Tiyanak(), "You: Muntik mo na akong malinlang!\nYou obtained a ring's shard (3/8)."),
 
             // LEVEL 4 - Kapre
             new Level(new String[]{
@@ -55,7 +49,7 @@ public class Story {
                     "You looked up and saw a towering Kapre smoking a cigar.",
                     "Kapre: Ikaw ba ang pumaslang sa tiyanak?!",
                     "You: Oo, at ikaw na ang isusunod ko."
-            }, creatures[3], "Kapre: Ito bang hiyas ang pakay mo? Sige sa'yo na, tutal wala na akong lakas para panghawakan yan.\nYou obtained a ring's shard (4/8)."),
+            }, () -> new Kapre(), "Kapre: Ito bang hiyas ang pakay mo? Sige sa'yo na, tutal wala na akong lakas para panghawakan yan.\nYou obtained a ring's shard (4/8)."),
 
             // LEVEL 5 - Tiktik
             new Level(new String[]{
@@ -73,7 +67,7 @@ public class Story {
                     "Tiktik: HAHAHA. Dalawang tao at isang sariwang sanggol ang paparating. Mukhang mabubusog ako ngayong gabi ah!",
                     "You: Lumayas ka dito, huwag mong papakealaman ang babaeng iyon at ang anak niya!",
                     "Tiktik: Papalag kaba? Sige, pagkatapos kitang kainin, isusunod ko naman yung dalawa sa loob bilang pang himagas. HAHAHA!"
-            }, creatures[8], "Tiktik: Hindi to maaari, tao ka lang!\nYou: Akin na itong hiyas na hawak mo.\nLady: Maraming salamat sa pag protekta sa akin at sa aking sanggol.\nYou: Bilisan nyo, umalis na kayo sa baryong ito.\nYou obtained a ring's shard (5/8)."),
+            }, () -> new Tiktik(), "Tiktik: Hindi to maaari, tao ka lang!\nYou: Akin na itong hiyas na hawak mo.\nLady: Maraming salamat sa pag protekta sa akin at sa aking sanggol.\nYou: Bilisan nyo, umalis na kayo sa baryong ito.\nYou obtained a ring's shard (5/8)."),
 
             // LEVEL 6 - Manananggal
             new Level(new String[]{
@@ -83,7 +77,7 @@ public class Story {
                     "Manananggal: KEKEKEK! Ang lakas ng loob mo na hamunin ako! Hindi porket natalo mo si Tiktik ay kaya mo na rin ako! KEKEKEK!",
                     "You: Kahit gaano ka pa kalakas, parehas lang kayo ng kahahantungan ng Tiktik na iyon, kaya naman ilabas mo na ang hiyas!",
                     "Manananggal: KEKEKEK! Gusto mo ang hiyas? Edi kunin mo sakin kung kaya mo! KEKEKEK!"
-            }, creatures[4], "Manananggal: Ang pakpak ko! Anong ginawa mo sa pakpak ko! AHHHHHHHH!\nYou obtained a ring's shard (6/8)."),
+            }, () -> new Manananggal(), "Manananggal: Ang pakpak ko! Anong ginawa mo sa pakpak ko! AHHHHHHHH!\nYou obtained a ring's shard (6/8)."),
 
             // LEVEL 7 - White Lady
             new Level(new String[]{
@@ -95,7 +89,7 @@ public class Story {
                     "You saw her face, covered in blood, her eyes red, and her skin, pale like a corpse's.",
                     "She took a hold of your neck and tried to choke you to death.",
                     "White Lady: LALAKE! ISA PANG LALAKE? PAPATAYIN KO LAHAT NG LALAKE SA MUNDONG ITO!"
-            }, creatures[1], "White Lady: Hindi ako titigil hangga't hindi namamatay lahat ng lalake!\nYou: Ikaw pala ang pumatay sa asawa ng buntis na babaeng iyon. Akin na ang hiyas na ito.\nYou obtained a ring's shard (7/8)."),
+            }, () -> new WhiteLady(), "White Lady: Hindi ako titigil hangga't hindi namamatay lahat ng lalake!\nYou: Ikaw pala ang pumatay sa asawa ng buntis na babaeng iyon. Akin na ang hiyas na ito.\nYou obtained a ring's shard (7/8)."),
 
             // LEVEL 8 - Tikbalang
             new Level(new String[]{
@@ -108,7 +102,7 @@ public class Story {
                     "Tikbalang: NEIGHHHH!! Mahinang nilalang! Ako na ang tatapos sayo! NEIGHHHH!",
                     "You: Nasa'yo ang huling hiyas, tama ba?!",
                     "Tikbalang: Oo, at mananatili ito sa'kin!"
-            }, creatures[6], "Tikbalang: Engkanto! patawarin mo ang kahinaan namin!\nYou obtained a ring's shard (8/8).")
+            }, () -> new Tikbalang(), "Tikbalang: Engkanto! patawarin mo ang kahinaan namin!\nYou obtained a ring's shard (8/8).")
     };
 
     
@@ -156,7 +150,7 @@ public class Story {
 
         // Final battle
         System.out.println("\nFINAL BOSS\n");
-        Battle finalBattle = new Battle(creatures[2]);
+        Battle finalBattle = new Battle(new Engkanto());
         finalBattle.start();
 
         String[] endingLines = {

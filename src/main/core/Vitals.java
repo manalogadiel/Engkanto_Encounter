@@ -29,7 +29,6 @@ public class Vitals {
     private boolean rareCreatureEncountered;
 
     public Vitals() {
-        // Initialize enum fields to defaults to prevent null
         this.auraPulse = AuraPulse.CORRUPTED;
         this.consciousness = Consciousness.DORMANT;
         this.ritualGround = RitualGround.UNMARKED;
@@ -37,7 +36,6 @@ public class Vitals {
         this.faithState = FaithState.NORMAL;
     }
 
-    // Helper methods to map integer values to enum types
     public static AuraPulse getAuraPulseFromInt(int value) {
         if (value == 10) return null; // auto lose, handle in game logic
         if (value >= 9) return AuraPulse.CHAOTIC;
