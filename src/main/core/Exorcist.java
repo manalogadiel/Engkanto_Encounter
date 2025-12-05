@@ -111,7 +111,7 @@ public class Exorcist {
                 }
                 else {
                     vitals.setConsciousness(Math.min(10, vitals.getConsciousnessValue()+1));
-                    vitals.setSoulFlux(vitals.getSoulFlux() - (new Random().nextDouble(4.02, 15.67)));
+                    vitals.setSoulFlux(vitals.getSoulFlux() - (new Random().nextDouble(1.02, 2.67)));
                     vitals.setChanneling(Math.min(10, vitals.getChanneling() - new Random().nextInt(1,2)));
                     vitals.setSpiritualVision(Math.max(0, vitals.getSpiritualVisionValue() - (new Random().nextInt(1,2))));
                     setSkillText("Your candle was blew by the birthday celebrant. That's unfortunate.\n");
@@ -128,15 +128,15 @@ public class Exorcist {
                 }
                 else {
                     vitals.setConsciousness(Math.min(10, vitals.getConsciousnessValue() + 1));
-                    vitals.setSoulFlux(vitals.getSoulFlux() - (new Random().nextDouble(2.02, 3.67)));
+                    vitals.setSoulFlux(vitals.getSoulFlux() - (new Random().nextDouble(1.02, 1.67)));
                     setSkillText("The container cracked; herbs fell.\n");
                 }
             }
             case "Burn Herbs" -> {
                 if (getChamberOpened() == true) {
                     if (skillSuccess(90, skillRange)) {
-                        vitals.setSoulFlux(Math.min(130.00, vitals.getSoulFlux() + new Random().nextDouble(3.23, 12.93)));
-                        vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,3)));
+                        vitals.setSoulFlux(Math.min(130.00, vitals.getSoulFlux() + new Random().nextDouble(5.23, 15.93)));
+                        vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,2)));
                         vitals.setChanneling(Math.max(0, vitals.getChanneling() - new Random().nextInt(1, 2)));
                         vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - new Random().nextInt(1,2)));
                         vitals.setSpiritualVision(Math.max(0, vitals.getSpiritualVisionValue() - 1));
@@ -144,7 +144,7 @@ public class Exorcist {
                         setSkillText("The herbs smolder slowly; the air grows thick with acrid fumes.\n"); 
                     }
                     else {
-                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(3.23, 5.93));
+                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(1.23, 1.93));
                         setSkillText("The herbs fail to ignite properly; the smoke disperses harmlessly.\n");
                     }
                 }
@@ -159,7 +159,12 @@ public class Exorcist {
                     vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - new Random().nextInt(1,2)));
                     vitals.setSpiritualVision(Math.max(0, vitals.getSpiritualVisionValue() - 1));
                     vitals.setAuraPulse(Math.min(10, vitals.getAuraPulseValue() + 1));
-                    setSkillText("Your prayer resonates; the flames calm and Pyric Marks decrease.\n"); 
+                    if (vitals.getPyricMarks() > 0){
+                        setSkillText("Your prayer resonates; the flames calm and Pyric Marks decrease.\n"); 
+                    }
+                    else {
+                        setSkillText("Channeling decreased, that's a good one.\n");
+                    }
                 }
                 else {
                     vitals.setChanneling(Math.max(0, vitals.getChanneling() - (new Random().nextInt(2))));
@@ -186,7 +191,7 @@ public class Exorcist {
                         }
                     }
                     else {
-                        vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(2,3)));
+                        vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,2)));
                         setSkillText("The power rejects your command; the creature's mind resists.\n");
                     }
                 }
@@ -265,7 +270,7 @@ public class Exorcist {
                     }
                 }
                 else {
-                    setSkillText("The holy water has no effect; the creature's essence remains intact.\n" + getHeartBaneUsed());
+                    setSkillText("The holy water has no effect; the creature's essence remains intact.\n");
                 }
             }
             case "Sprinkle Salt" -> {
@@ -276,17 +281,17 @@ public class Exorcist {
                     }
                     if (skillSuccess(90, skillRange)) {
                         vitals.setUncorrupted(Math.max(0, vitals.getUncorrupted() - 1));
-                        vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,3)));
+                        vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,2)));
                         vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - new Random().nextInt(1,2)));
                         vitals.setSpiritualVision(Math.max(0, vitals.getSpiritualVisionValue() - (new Random().nextInt(1, 2))));
                         setSkillText("The salt purifies the essence; corruption fades.\n");
                         if (vitals.getPossessed() > 0) {
                            vitals.setUncorrupted(Math.min(10, vitals.getUncorrupted() + 1));
-                           vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(3.23, 15.93)); 
+                           vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(1.23, 1.93)); 
                         }
                     }
                     else {
-                        vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,3)));
+                        vitals.setFaithState(Math.max(0, vitals.getFaithStateValue() - new Random().nextInt(1,2)));
                         setSkillText("You used iodized salt. Nothing happens.\n");
                     }
                 }
@@ -299,21 +304,21 @@ public class Exorcist {
                     if (skillSuccess(90, skillRange)) {
                         vitals.setPossessed(Math.max(0, vitals.getPossessed() - 1));
                         vitals.setUncorrupted(vitals.getUncorrupted() + 1);
-                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(2, 3))));
+                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
                         vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - new Random().nextInt(1,2)));
                         setSkillText("The garlic fumes sting; possession weakens.\n"); 
                     }
                     else {
                         vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
-                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(3.23, 15.93));
+                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(1.23, 1.93));
                         setSkillText("You tossed stale garlic; it had no effect.\n");
                     }
                 }
                 else {
                     if (skillSuccess(90, skillRange)) {
-                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
+                        vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 2))));
                         vitals.setRitualGround(Math.max(0, vitals.getRitualGroundValue() - new Random().nextInt(1,2)));
-                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(3.23, 15.93));
+                        vitals.setSoulFlux(vitals.getSoulFlux() - new Random().nextDouble(1.23, 1.93));
                         setSkillText("The garlic fumes sting; possession weakens.\n"); 
                     }
                     else {
@@ -329,7 +334,7 @@ public class Exorcist {
                     setSkillText("Hallelujah! Your faith has been restored and strengthened.\n"); 
                 }
                 else {
-                    vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 3))));
+                    vitals.setAuraPulse(Math.max(0, vitals.getAuraPulseValue() - (new Random().nextInt(1, 2))));
                     setSkillText("Your rosary snaps into pieces.\n");
                 }
             }
