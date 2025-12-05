@@ -19,7 +19,7 @@ The system uses ritual-based mechanics, creature attributes, and dynamic combat 
 
 ## 📚 ┊ Project Structure
 ```
-📂 src/
+📂 src/main
 ├── 📂 core/
 │   ├── Battle.java
 │   ├── Exorcist.java
