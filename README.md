@@ -207,7 +207,7 @@ Choose a skill number to use (1-15) or 'E' to exit:
     <img src="https://img.shields.io/badge/GitHub-%23121011.svg?logo=github&logoColor=white" alt="mmanalogadiel's GitHub">
         </a>
     </td>
-    <td>Project Leader/System Architect</td>
+    <td>Project Leader/Lead Programmer</td>
 </tr>
 <tr>
     <td><img src="static/russcod3.jpg" width="100" height="100"> </td>
